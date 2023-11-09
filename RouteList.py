@@ -7,6 +7,9 @@ class RouteList(GeneralList):
             print(f'The route with the code {code} already exists!!!')
         else:
             GeneralList.appendItem(self, Routes(code, country, climate, duration, hotel, cost))
+            
+    def newItem(self, country='', climate='', duration=0, hotel='', cost=0):
+        GeneralList.appendItem(self, Routes(self.getNewCode(), country, climate, duration, hotel, cost))
 
 
     def getStr(self):

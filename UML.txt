@@ -130,16 +130,19 @@ class DataSQL{
 class ClientList{
 +getStr()
 +createItem()
++newItem()
 }
 
 class TravelList{
 +getStr()
 +createItem()
++newItem()
 }
 
 class RouteList{
 +getStr()
 +createItem()
++newItem()
 }
 
 RouteList o-u- Routes

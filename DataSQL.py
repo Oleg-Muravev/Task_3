@@ -1,7 +1,6 @@
 import os
 import sqlite3 as db
 from Data import Data
-
 emptydb = """
     PRAGMA foreign_keys = ON;
     create table client
@@ -30,7 +29,6 @@ emptydb = """
     routes integer references routes(code) on update cascade on delete cascade,
     unique(package, client, routes));
 """
-
 class DataSQL(Data):
     def read(self):
         conn = db.connect(self.getInp())
@@ -50,31 +48,25 @@ class DataSQL(Data):
         curs.execute('select package, client, routes from package_client_route')
         data = curs.fetchall()
         for r in data:
-            if r[1] is not None:
+            if r[1] != None:
                 self.getData().getTravel(r[0]).appendClient(self.getData().getClient(r[1]))
-            if r[2] is not None:
+            if r[2] != None:
                 self.getData().getTravel(r[0]).appendRoute(self.getData().getRoute(r[2]))
         conn.close()
-
+        
     def write(self):
         conn = db.connect(self.getOut())
         curs = conn.cursor()
         curs.executescript(emptydb)
         for c in self.getData().getClientList():
-            curs.execute(
-                "insert into client(code, surname, name, middlename, address, phone) values(?,?,?,?,?,?)",
-                (c.getCode(), c.getSurname(), c.getName(), c.getMiddlename(), c.getAddress(), c.getPhone()))
+            curs.execute("insert into client(code, surname, name, middlename, address, phone) values('%s','%s','%s','%s','%s','%s')"%(c.getCode(), c.getSurname(), c.getName(),c.getMiddlename(), c.getAddress(), c.getPhone()))
         for s in self.getData().getRouteList():
-            curs.execute(
-                "insert into routes(code, country, climate, duration, hotel, cost) values(?,?,?,?,?,?)",
-                (s.getCode(), s.getCountry(), s.getClimate(), s.getDuration(), s.getHotel(), s.getCost()))
+            curs.execute("insert into routes(code, country, climate, duration, hotel, cost) values('%s','%s','%s','%s','%s','%s')"%(s.getCode(), s.getCountry(), s.getClimate(), s.getDuration(), s.getHotel(), s.getCost()))
         for i in self.getData().getTravelList():
-            curs.execute(
-                "insert into package(code, date, quantity, discount) values(?,?,?,?)",
-                (i.getCode(), i.getDate(), i.getQuantity(), i.getDiscount()))
+            curs.execute("insert into package(code, date, quantity, discount) values('%s','%s','%s','%s')"%(i.getCode(), i.getDate(), i.getQuantity(), i.getDiscount()))
             for cl in i.getClient().getItems():
-                curs.execute("insert into package_client_route(package, client, routes) values(?,?,?)", (i.getCode(), cl.getCode(), None))
+                curs.execute("insert into package_client_route(package, client) values('%s', '%s')"%(i.getCode(), cl.getCode()))
             for rt in i.getRoute().getItems():
-                curs.execute("insert into package_client_route(package, client, routes) values(?,NULL,?)", (i.getCode(), rt.getCode()))
+                curs.execute("insert into package_client_route(package, routes) values('%s', '%s')"%(i.getCode(), rt.getCode()))
         conn.commit()
         conn.close()
