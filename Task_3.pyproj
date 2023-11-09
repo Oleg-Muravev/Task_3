@@ -1,0 +1,59 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>c34fedcc-5af1-4393-be2f-a4b5c833a012</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>Main3.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>Task_3</Name>
+    <RootNamespace>Task_3</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Client.py" />
+    <Compile Include="ClientList.py" />
+    <Compile Include="Data.py" />
+    <Compile Include="DataJSON.py" />
+    <Compile Include="DataSQL.py" />
+    <Compile Include="DataXML.py" />
+    <Compile Include="General.py" />
+    <Compile Include="GeneralList.py" />
+    <Compile Include="Main.py" />
+    <Compile Include="Main3.py" />
+    <Compile Include="MainJSON.py" />
+    <Compile Include="MainXML.py" />
+    <Compile Include="RouteList.py" />
+    <Compile Include="Routes.py" />
+    <Compile Include="TravelCompany.py" />
+    <Compile Include="TravelList.py" />
+    <Compile Include="TravelPackages.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="new.json" />
+    <Content Include="new.sqlite" />
+    <Content Include="new.xml" />
+    <Content Include="old.json" />
+    <Content Include="old.xml" />
+    <Content Include="UML.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
