@@ -9,10 +9,11 @@ t2 = TravelCompany()
 xml1 = DataXML(t1, 'old.xml', 'new.xml')
 xml2 = DataXML(t2, 'old.xml', 'new.xml')
 sql1 = DataSQL(t1, 'new.sqlite', 'new.sqlite')
+sql2 = DataSQL(t2, 'new.sqlite', 'new.sqlite')
 
 xml1.read()
-if os.path.isfile(sql1.getOut()): 
+if os.path.isfile(sql1.getOut()):
     os.remove(sql1.getOut())
 sql1.write()
-sql1.read()
+sql2.read()
 xml2.write()
