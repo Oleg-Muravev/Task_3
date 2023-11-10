@@ -112,10 +112,6 @@ class Data {
 +write()
 }
 
-class DataJSON{
-+read()
-+write()
-}
 
 class DataXML{
 +read()
@@ -151,7 +147,6 @@ GeneralList <|-- ClientList
 GeneralList <|-- TravelList
 Packages o-u- ClientList
 Packages o-u- RouteList
-Data <|-- DataJSON
 Data <|-- DataXML
 Data <|-- DataSQL
 General <|-- Client
@@ -162,4 +157,3 @@ TravelList o-u- Packages
 TravelCompany o-u- ClientList
 TravelCompany o-u- RouteList
 TravelCompany o-u- TravelList
-TravelCompany <-- Data
